@@ -6,13 +6,13 @@ function BlockBr() {
   return (
     <div className={classes.blockWrapper}>
         <div className={classes.textWrapper}>
-            <h1 className={classes.mainText}>About Victu</h1>
+            <h1 className={classes.mainText}>About BookAddict</h1>
             <h3 className={classes.secondaryText}>
-            Free web-application to assist enhancing your well-being.
+            Free web-application to monitor reading habit.
             </h3>
         </div>        
         <div className={classes.imageWrapper}>
-            <img src='images/eating2.svg'></img>
+            <img src='images/bookshelves.svg'></img>
         </div>
     </div>
   )

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./Login.module.css";
 import axios from "axios";
 import getMyData from "../../../helpers/getMyData";
-import getMyProgram from "../../../helpers/getMyProgram";
+import getMyFavorites from "../../../helpers/getMyFavorites";
 
 const redirect = () => {
   window.location.href = '/personal'
@@ -23,7 +23,7 @@ function Login(){
 
     const options = {
       method: 'POST',
-      url: 'https://victu-api.up.railway.app/api/v1/auth/login',
+      url: 'http://localhost:3001/api/v1/auth/login',
       body: {
         "email": email,
         "password": password
@@ -43,8 +43,8 @@ function Login(){
 
       console.log(response.data);
 
-      const token = response.data.token
-      const ID = response.data.id
+      const token = response.data.data.token
+      const ID = response.data.data.userID
       localStorage.setItem("ID", ID)
       localStorage.setItem("token", token)
 

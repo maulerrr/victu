@@ -6,15 +6,15 @@ export default function LetsStart() {
     <div className={classes.actionContainer}>
         <div className={classes.actionText}>
             <p className={classes.mainText}>
-              Let food be thy medicine and medicine be thy food
+              Sign up to access to library!
             </p>
             <p className={classes.secondaryText}>
-            Control your daily eating manner, get some healthy habits.
+            Over 100 famous books
             </p>
         </div>
         <div className={classes.actionBtnWrapper}>
             <a className={classes.actionBtn} href='/personal'>
-                <h1>Let's start your healthy journey!</h1>
+                <h1>Let's start your journey!</h1>
                 <img src='images/arrow.svg' className={classes.arrow} ></img>
             </a>
         </div>

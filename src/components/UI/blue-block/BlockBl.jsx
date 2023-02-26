@@ -5,15 +5,15 @@ function BlockBl() {
   return (
     <div className={classes.blockWrapper}>
         <div className={classes.imageWrapper}>
-            <img src='images/eating.svg'/>
+            <img src='images/literature.svg'/>
         </div>
         <div className={classes.textWrapper}>
-            <h1 className={classes.mainText}>Victu gives you</h1>
+            <h1 className={classes.mainText}>Save your</h1>
             <h3 className={classes.secondaryText}>
-                1 exercise program
+                1 favorites
             </h3>
             <h3 className={classes.secondaryText}>
-                2 useful tips
+                2 book u already read
             </h3>
         </div>
         

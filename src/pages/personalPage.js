@@ -1,73 +1,64 @@
 import React, { useEffect, useState } from "react";
-import Metrica from "../components/UI/metrica/Metrica";
 import axios from "axios";
-import UserDetails from "../components/UI/userDetails/UserDetails";
 import getMyData from "../helpers/getMyData"
-import getMyProgram from "../helpers/getMyProgram"
-import getActivities from "../helpers/getActivities";
+import getMyFavorites from "../helpers/getMyFavorites"
+import getFinished from "../helpers/getFinished";
+import Favorite from "../components/UI/Favorite/Favorite";
+import Finished from "../components/UI/Finished/Finished";
+import getAllBooks from "../helpers/getAllBooks";
 
 const redirect = () => {
   window.location.href = '/log'
 }
 
 function PersonalPage() {
+  if (!localStorage.getItem("token")){
+    redirect()
+  }
 
-  getActivities().then(r => {
-    console.log("Got activities");
+  getAllBooks()
+  getFinished()
+  getMyFavorites()
+  // const [favorites, setFavorites] = useState("Add some")
+  // const [finished, setFinished] = useState("Add some")
+
+  const allBooks = JSON.parse(localStorage.getItem("books"))
+  const favorites = JSON.parse(localStorage.getItem("favorites"))
+  const finished = JSON.parse(localStorage.getItem("finished"))
+
+  const favoriteBooks = allBooks.filter((book) => {
+    return favorites.some((fav) => fav.book_id === book.id);
   });
 
-  // const getMyData = async () => {
-  //   const ID = localStorage.getItem("ID");
-  //   const options = {
-  //     method: "GET",
-  //     url: "http://localhost:3001/api/v1/users"
-  //   };
-  //
-  //   await axios.request(options).then(function(response) {
-  //     const users = response.data;
-  //     const me = users.find((user) => {
-  //       return user._id === ID;
-  //     });
-  //
-  //     localStorage.setItem("me", JSON.stringify(me));
-  //   }).catch(function(error) {
-  //     console.error(error);
-  //   });
-  // };
-  //
-  // const getMyProgram = async () => {
-  //   const ID = localStorage.getItem("ID");
-  //
-  //   const options = {
-  //     method: "GET",
-  //     url: "http://localhost:3001/api/v1/program/user/" + ID
-  //   };
-  //
-  //   await axios.request(options).then(function(response) {
-  //     console.log(response.data);
-  //     const program = response.data;
-  //     localStorage.setItem("program", JSON.stringify(program));
-  //   });
-  // };
+// Filter the allBooks array to get an array of all finished books
+  const finishedBooks = allBooks.filter((book) => {
+    return finished.some((fin) => fin.book_id === book.id && fin.finished);
+  });
 
-  window.onload = (async (e) => {
+
+  getFinished().then(r => {
+    console.log("Got finished books");
+  });
+
+  useEffect(((e) => {
     if (localStorage.getItem("token")) {
-      await getMyData();
-      await getActivities();
-      if (JSON.parse(localStorage.getItem("me")).metrics) {
-        await getMyProgram();
-        if (!(JSON.parse(localStorage.getItem("me")).program._id === JSON.parse(localStorage.getItem("program"))._id)){
-          await getMyProgram()
-        }
-      }
+      getMyData();
+      getAllBooks()
+      getFinished();
+      getMyFavorites();
     } else {
       return redirect();
     }
-  });
+  }));
+
 
   return (
-    <div className="App">
-      <Metrica />
+    <div className="Personal">
+      <div><h1>Favorites:</h1> { favoriteBooks.map((book, index) => {
+        return <Favorite book={book} key={index}/>})}</div>
+      <div><h1>Finished:</h1> { finishedBooks.map((book, index) => {
+        console.log(book)
+        return <Finished book={book} key={index}/>})}</div>
     </div>
   );
 }
