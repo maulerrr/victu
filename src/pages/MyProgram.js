@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserDetails from "../components/UI/userDetails/UserDetails";
-import getMyFavorites from "../helpers/getMyFavorites";
-import getFinished from "../helpers/getFinished";
+import getMyProgram from "../helpers/getMyProgram";
+import getActivities from "../helpers/getActivities";
 import getMyData from "../helpers/getMyData";
 import LoadingIndicator from "../components/UI/loading-indicator/LoadingIndicator";
 
@@ -43,8 +43,8 @@ const MyProgram = () => {
 
       setLoading(true); // Set loading to true before fetching data
 
-      await getFinished()
-      await getMyFavorites()
+      await getActivities()
+      await getMyProgram()
       await getMyData()
 
       const activities = JSON.parse(localStorage.getItem("activities"));

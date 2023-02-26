@@ -5,7 +5,7 @@ export default function Motto() {
   return (
     <div className={classes.mottoWrapper}>
         <h1 className={classes.motto}>
-            Read with BookAddict
+            Control your diet using victu
         </h1>
     </div>
   )

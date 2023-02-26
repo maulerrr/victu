@@ -3,24 +3,24 @@ import classes from "./Registration.module.css";
 import axios from "axios";
 
 const redirect = () => {
-    window.location.href = '/books'
+    window.location.href = '/personal'
 }
 
 function Registration(...props){
-    const [fullname, setFullname] = useState()
+    const [name, setName] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
 
     const HandleSubmit = async (e) =>{
         e.preventDefault()
 
-        console.log("*name: " + fullname + " | @email: " + email + " | #pwd: "+ password);
+        console.log("*name: " + name + " | @email: " + email + " | #pwd: "+ password);
 
         const options = {
             method: 'POST',
-            url: 'http://localhost:3001/api/v1/auth/signup',
+            url: 'https://victu-api.up.railway.app/api/v1/auth/signup',
             body: {
-                "fullname": fullname,
+                "name": name,
                 "email": email,
                 "password": password
             }
@@ -30,7 +30,7 @@ function Registration(...props){
             console.log("trying to POST /auth/signup");
 
             const response = await axios.post(options.url,
-              JSON.stringify({fullname, email, password}),
+              JSON.stringify({name, email, password}),
               {
                   headers: { "Content-Type": "application/json" },
                   body: options.body
@@ -39,8 +39,8 @@ function Registration(...props){
 
             console.log(response.data);
 
-            const token = response.data.data.token
-            const ID = response.data.data.userID
+            const token = response.data.token
+            const ID = response.data.id
             localStorage.setItem("ID", ID)
             localStorage.setItem("token", token)
 
@@ -48,7 +48,7 @@ function Registration(...props){
                 redirect()
             }
 
-            setFullname('')
+            setName('')
             setEmail('')
             setPassword('')
         } catch (err) {
@@ -64,11 +64,11 @@ function Registration(...props){
     return (
         <div className={classes.regWrapper}>
             <form onSubmit={HandleSubmit}>
-                <label for="fullname">Full Name</label>
-                <input className={classes.AuthInput} type="text" name="fullname"
+                <label for="username">Username</label>
+                <input className={classes.AuthInput} type="text" name="username"
                    onChange={(e) => {
-                       setFullname(e.target.value);
-                       console.log(fullname);
+                       setName(e.target.value);
+                       console.log(name);
                    }}/>
 
                 <label for="email">Email</label>

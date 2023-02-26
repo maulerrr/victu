@@ -28,7 +28,7 @@ function UserDetails(props) {
         <h1 className={classes.MainTxt}>{props.details.remainingTime}</h1>
         <p>Days left</p>
       </div>
-      <a className={classes.ExerciseBtn} href={"/book"}>
+      <a className={classes.ExerciseBtn} href={"/exercise"}>
         Start exercising
       </a>
     </div>

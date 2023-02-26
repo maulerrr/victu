@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import UserDetails from "../../components/UI/userDetails/UserDetails";
 import getMyData from "../../helpers/getMyData";
-import getMyFavorites from "../../helpers/getMyFavorites";
-import getFinished from "../../helpers/getFinished";
+import getMyProgram from "../../helpers/getMyProgram";
+import getActivities from "../../helpers/getActivities";
 import login from "../../components/UI/login-form/Login";
 
 const reload = () => {
@@ -22,13 +22,13 @@ export const MyProgram = () => {
 
   let renderUserDetails = false
   let username = null
-  getFinished().then(r => {
+  getActivities().then(r => {
     console.log("Got activities");
   })
 
   getMyData().then(r => {
     if (JSON.parse(localStorage.getItem("me")).program != null){
-      getMyFavorites().then(r => {
+      getMyProgram().then(r => {
         console.log("Program already exists, got it successfully!");
       })
     } else personal()
@@ -80,7 +80,7 @@ export const MyProgram = () => {
   window.onload = (async (e) => {
     if (localStorage.getItem("token")) {
       if (!(JSON.parse(localStorage.getItem("me")).metrics)) {
-        await getMyFavorites();
+        await getMyProgram();
       }
     } else {
       return redirect();

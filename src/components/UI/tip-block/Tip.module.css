@@ -1,0 +1,15 @@
+.tipWrapper{
+    display: flex;
+    flex-direction: column;
+    background-color: #314154;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 300px;
+    margin: 1rem;
+}
+.tipWrapper p{
+    color: white;
+}
+.TipHeader{
+    color: white;
+}

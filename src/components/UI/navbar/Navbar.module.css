@@ -3,7 +3,7 @@
     padding: 1rem 0;
     border-bottom-left-radius: 2rem;
     box-shadow: black 4px 4px 10px;
-    background-color: #000000;
+    background-color: #314154;
 
     display: flex;
     flex-wrap: nowrap;  
@@ -21,7 +21,7 @@
 
 .logo{
     display: inline-block;
-    width: 11%;
+    width: 70%;
     margin: 0;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .dropdownBtn{
-    background-color: #8a6161;
+    background-color: #56779D;
     color: white;
     padding: 1rem;
     margin: auto;
@@ -48,9 +48,9 @@
     text-decoration: none;
 }
 .navBtn:hover{
-    background-color: #8a6161;
+    background-color: #56779D;
     border-radius: 1rem;
 }
 .dropdownBtn:hover{
-    background-color: rgba(140, 96, 96, 0.25);
+    background-color: #4b6380;
 }
